@@ -1,0 +1,27 @@
+{
+  "name": "ReactARBusinessCard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "homepage": "https://github.com/ShimantaBhuyan/ReactARBusinessCard",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build index.html",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "parcel-bundler": "^1.12.4"
+  },
+  "dependencies": {
+    "aframe": "^1.0.4",
+    "random-color": "^1.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
