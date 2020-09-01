@@ -44,4 +44,4 @@ var t=require("clone"),s=require("color-convert"),e=require("color-string"),h=fu
 },{"react":"HdMw","random-color":"oBeS"}],"Focm":[function(require,module,exports) {
 "use strict";var e=u(require("react")),r=u(require("react-dom")),t=u(require("./App"));function u(e){return e&&e.__esModule?e:{default:e}}r.default.render(e.default.createElement(t.default,null),document.getElementById("root"));
 },{"react":"HdMw","react-dom":"X9zx","./App":"lY9v"}]},{},["Focm"], null)
-//# sourceMappingURL=/ReactARBusinessCard.a68ec42e.js.map
+//# sourceMappingURL=ReactARBusinessCard.a68ec42e.js.map
