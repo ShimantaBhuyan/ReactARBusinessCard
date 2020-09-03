@@ -73,9 +73,9 @@ const App = () => {
     return (       
 
         <Router>
-            <Home path="process.env.PUBLIC_URL + '/'" onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
+            <Home path="/" onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
             {/*<AScene path="/ARCard" userData = {user} />*/}
-            <Sample path="process.env.PUBLIC_URL + '/testing'" user={user}/>
+            <Sample path="/testing" user={user}/>
         </Router>
     )
 }
