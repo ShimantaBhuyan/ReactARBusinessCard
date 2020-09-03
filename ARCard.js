@@ -69,7 +69,7 @@ const ARCard = (props) => {
                     <img crossOrigin="anonymous" id="linkedinTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostLinkedin.png?1528821333139" />
                     <img crossOrigin="anonymous" id="githubTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostGithub.png?1528821333564" />   
                     <img crossOrigin="anonymous" id="headshotTexture" src="/ReactARBusinessCard/assets/headshot.jpg" />               
-                    <img crossOrigin="anonymous" id="avevaLogo" src="/ReactARBusinessCard/assets/AVEVA/AVEVA_Logo_color_RGB.png"/>
+                    <img crossOrigin="anonymous" id="avevaLogo" src="/ReactARBusinessCard/assets/AVEVA_Logo_color_RGB.png"/>
 
                     <a-mixin id="cube" geometry="primitive: box" radius="5" scale="40 40 40" rotation="0 0 0"></a-mixin>
                     <a-mixin id="mouseEnterAnimation" 
