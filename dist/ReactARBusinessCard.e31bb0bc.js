@@ -107719,7 +107719,7 @@ var ARCard = function ARCard(props) {
   }), /*#__PURE__*/_react.default.createElement("img", {
     crossOrigin: "anonymous",
     id: "avevaLogo",
-    src: "/ReactARBusinessCard/assets/AVEVA/AVEVA_Logo_color_RGB.png"
+    src: "/ReactARBusinessCard/assets/AVEVA_Logo_color_RGB.png"
   }), /*#__PURE__*/_react.default.createElement("a-mixin", {
     id: "cube",
     geometry: "primitive: box",
@@ -107747,7 +107747,7 @@ var ARCard = function ARCard(props) {
     rotation: "-90 -90 90",
     position: "-40 0 -620"
   }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    "text-geometry": "value: ".concat(props.user.name, "; font: #optimerBoldFont; size: 20"),
+    "text-geometry": "\"value: ".concat(props.user.name, "; font: #optimerBoldFont; size: 20\""),
     rotation: "-90 -90 90",
     position: "-100 0 -450"
   }), /*#__PURE__*/_react.default.createElement("a-plane", {
@@ -107758,28 +107758,28 @@ var ARCard = function ARCard(props) {
     position: "50 0 -570"
   }), /*#__PURE__*/_react.default.createElement("a-entity", {
     mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
-    className: "clickable",
+    class: "clickable",
     material: "src: #headshotTexture",
     rotation: "-90 -90 90",
     position: "180 0 -400",
     "navigate-on-click": "url: ".concat(props.user.portfolio)
   }), /*#__PURE__*/_react.default.createElement("a-entity", {
     mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
-    className: "clickable",
+    class: "clickable",
     material: "src: #linkedinTexture",
     rotation: "-90 -90 90",
     position: "-80 0 -400",
     "navigate-on-click": "url: ".concat(props.user.linkedin)
   }), /*#__PURE__*/_react.default.createElement("a-entity", {
     mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
-    className: "clickable",
+    class: "clickable",
     material: "src: #githubTexture",
     rotation: "-90 -90 90",
     position: "-80 0 -145",
     "navigate-on-click": "url: ".concat(props.user.github)
   }), /*#__PURE__*/_react.default.createElement("a-entity", {
     mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
-    className: "clickable",
+    class: "clickable",
     material: "src: #emailTexture",
     rotation: "-90 -90 90",
     position: "180 0 -145",
@@ -107792,7 +107792,7 @@ var ARCard = function ARCard(props) {
     raycaster: "objects: .clickable",
     position: "0 0 -1",
     scale: "0.01 0.01 0.01",
-    geometry: "primitive: ring;",
+    geometry: "primitive: ring",
     material: "color: white; shader: flat",
     rotation: "",
     visible: "",
@@ -108000,7 +108000,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62958" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59715" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

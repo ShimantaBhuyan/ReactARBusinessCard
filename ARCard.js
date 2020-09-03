@@ -71,7 +71,7 @@ const ARCard = (props) => {
                     <img crossOrigin="anonymous" id="headshotTexture" src="/ReactARBusinessCard/assets/headshot.jpg" />               
                     <img crossOrigin="anonymous" id="avevaLogo" src="/ReactARBusinessCard/assets/AVEVA_Logo_color_RGB.png"/>
 
-                    <a-mixin id="cube" geometry="primitive: box" radius="5" scale="40 40 40" rotation="0 0 0"></a-mixin>
+                    <a-mixin id="cube" geometry={"primitive: box"} radius="5" scale="40 40 40" rotation="0 0 0"></a-mixin>
                     <a-mixin id="mouseEnterAnimation" 
                         animation__mouseenter="property: rotation; 
                             startEvents: mouseenter; 
@@ -121,7 +121,7 @@ const ARCard = (props) => {
                 <a-entity camera cursor="rayOrigin: mouse"></a-entity>
                 
                 <a-entity cursor="fuse: true; fuseTimeout: 2000;" raycaster="objects: .clickable" position="0 0 -1" scale="0.01 0.01 0.01" 
-                    geometry="primitive: ring;" 
+                    geometry={"primitive: ring"} 
                     material="color: white; shader: flat" rotation="" visible="" 
                     animation="property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.01 0.01 0.01; to: 0.02 0.02 0.02; dur: 2000" 
                     animation__color="property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000"
