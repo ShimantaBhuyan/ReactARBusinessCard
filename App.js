@@ -2,7 +2,6 @@ import React, {useState, useEffect} from "react"
 import { Router, navigate } from "@reach/router";
 
 import UserForm from "./UserForm"
-import { AScene } from "aframe";
 
 const App = () => {    
     const defaultUser = {        
@@ -20,6 +19,13 @@ const App = () => {
     // user = {name, org, designation, email, phone, portfolio, linkedin, github}
     const [user, setUser] = useState(defaultUser)
 
+    useEffect(() => {
+        setUser(defaultUser)
+        return (() => {
+            setUser(defaultUser)
+        })
+    }, [])
+
     const handleSubmit = (event) => {
         event.preventDefault();
         
@@ -34,7 +40,7 @@ const App = () => {
         //     Github Profile: ${user.github}
         // `)
                 
-        event.target.reset()
+        //event.target.reset()
         // need to navigate to AScene component
         navigate("/testing")     
     }
@@ -55,25 +61,26 @@ const App = () => {
             setUser(prevUser => ({ ...prevUser, [name]: value }));
     }
 
-    const backgroundImageStyle = {
-        backgroundImage: `url("${user.image.src}")`,
-        backgroundSize: "contain",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-        height: "300px"
-    }
+    const backgroundImageStyle =
+        {
+            backgroundImage: `url("${user.image.src}")`,
+            backgroundSize: "contain",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            height: "300px"
+        }
 
     return (       
 
         <Router>
-            <Home path="/" onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
+            <Home path="process.env.PUBLIC_URL + '/'" onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
             {/*<AScene path="/ARCard" userData = {user} />*/}
-            <Sample path="/testing" user={user}/>
+            <Sample path="process.env.PUBLIC_URL + '/testing'" user={user}/>
         </Router>
     )
 }
 
-const Home = (props) => {
+const Home = (props) => { 
     return (
         <div>
             <UserForm onChange={props.onChange} onSubmit={props.onSubmit} user={props.user}/>
@@ -83,10 +90,9 @@ const Home = (props) => {
 }
 
 const Sample = (props) => {
-    console.log(props)
     return (
         <div>
-            <button onClick={() => {navigate("/")}}>To Home</button>
+            <button onClick={() => navigate("/") }>To Home</button>
             <h1>Routing Demo</h1>
             <p>Name: {props.user.name}</p>
             <p>Organisation: {props.user.org}</p>
