@@ -31149,13 +31149,13 @@ var App = function App() {
     height: "300px"
   };
   return /*#__PURE__*/_react.default.createElement(_router.Router, null, /*#__PURE__*/_react.default.createElement(Home, {
-    path: "/",
+    path: "process.env.PUBLIC_URL + '/'",
     onChange: handleChange,
     onSubmit: handleSubmit,
     user: user,
     backgroundImageStyle: backgroundImageStyle
   }), /*#__PURE__*/_react.default.createElement(Sample, {
-    path: "/testing",
+    path: "process.env.PUBLIC_URL + '/testing'",
     user: user
   }));
 };
@@ -31222,7 +31222,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60061" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55924" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
