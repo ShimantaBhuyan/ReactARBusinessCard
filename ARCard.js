@@ -104,17 +104,17 @@ const ARCard = (props) => {
                     >   
 
                     <a-entity text-geometry="value: AR Business Card; size: 15" rotation="-90 -90 90" position="-40 0 -620"></a-entity>
-                    <a-entity text-geometry={`value: ${props.user.name}; font: #optimerBoldFont; size: 20`} rotation="-90 -90 90" position="-100 0 -450"></a-entity>
+                    <a-entity text-geometry={`"value: ${props.user.name}; font: #optimerBoldFont; size: 20"`} rotation="-90 -90 90" position="-100 0 -450"></a-entity>
 
                     <a-plane src="#avevaLogo" height="200" width="476" rotation="-90 -90 90" position="50 0 -570"></a-plane>
 
-                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" className="clickable" material="src: #headshotTexture" rotation="-90 -90 90" position="180 0 -400" navigate-on-click={`url: ${props.user.portfolio}`}></a-entity>
+                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" material="src: #headshotTexture" rotation="-90 -90 90" position="180 0 -400" navigate-on-click={`url: ${props.user.portfolio}`}></a-entity>
 
-                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" className="clickable" material="src: #linkedinTexture" rotation="-90 -90 90" position="-80 0 -400" navigate-on-click={`url: ${props.user.linkedin}`}></a-entity>
+                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" material="src: #linkedinTexture" rotation="-90 -90 90" position="-80 0 -400" navigate-on-click={`url: ${props.user.linkedin}`}></a-entity>
 
-                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" className="clickable" material="src: #githubTexture" rotation="-90 -90 90" position="-80 0 -145" navigate-on-click={`url: ${props.user.github}`}></a-entity>
+                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" material="src: #githubTexture" rotation="-90 -90 90" position="-80 0 -145" navigate-on-click={`url: ${props.user.github}`}></a-entity>
 
-                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" className="clickable" material="src: #emailTexture" rotation="-90 -90 90" position="180 0 -145" navigate-on-click={`url: mailto:${props.user.email}`}></a-entity>
+                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" material="src: #emailTexture" rotation="-90 -90 90" position="180 0 -145" navigate-on-click={`url: mailto:${props.user.email}`}></a-entity>
                     
                 </a-nft>
 
