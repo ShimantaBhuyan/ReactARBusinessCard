@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react"
-import { Router, navigate } from "@reach/router";
 
 import UserForm from "./UserForm"
+import ARCard from "./ARCard"
 
 const App = () => {    
     const defaultUser = {        
@@ -13,11 +13,12 @@ const App = () => {
         portfolio: "",
         linkedin: "",
         github: "",
-        image: {loaded: false, src: {}}
+        image: {loaded: false, src: ""}
     };    
 
     // user = {name, org, designation, email, phone, portfolio, linkedin, github}
     const [user, setUser] = useState(defaultUser)
+    const [submitted, setSubmitted] = useState(false)
 
     useEffect(() => {
         setUser(defaultUser)
@@ -27,6 +28,8 @@ const App = () => {
     }, [])
 
     const handleSubmit = (event) => {
+        const { name } = event.target
+        
         event.preventDefault();
         
         // alert(`
@@ -38,11 +41,8 @@ const App = () => {
         //     Portfolio Website: ${user.portfolio}
         //     LinkedIn profile: ${user.linkedin}
         //     Github Profile: ${user.github}
-        // `)
-                
-        //event.target.reset()
-        // need to navigate to AScene component
-        navigate("/testing")     
+        // `)   
+        name === "toHome" ? setSubmitted(false) : setSubmitted(true)
     }
 
     const handleChange = (event) => {
@@ -70,21 +70,20 @@ const App = () => {
             height: "300px"
         }
 
-    return (       
-
-        <Router>
-            <Home path="/" onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
-            {/*<AScene path="/ARCard" userData = {user} />*/}
-            <Sample path="/testing" user={user}/>
-        </Router>
+    return (  
+        submitted ? <ARCard user={user} /> :
+            <Home onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
+            /*<Sample user={user} onSubmit={handleSubmit}/>*/
     )
 }
 
 const Home = (props) => { 
     return (
-        <div>
-            <UserForm onChange={props.onChange} onSubmit={props.onSubmit} user={props.user}/>
-            <div style={props.backgroundImageStyle}></div>
+        <div className="mainContainer">
+            <div>
+                <UserForm onChange={props.onChange} onSubmit={props.onSubmit} user={props.user}/>
+                <div style={props.backgroundImageStyle}></div>
+            </div>
         </div>
     )
 }
@@ -92,17 +91,19 @@ const Home = (props) => {
 const Sample = (props) => {
     return (
         <div>
-            <button onClick={() => navigate("/") }>To Home</button>
-            <h1>Routing Demo</h1>
-            <p>Name: {props.user.name}</p>
-            <p>Organisation: {props.user.org}</p>
-            <p>Designation: {props.user.designation}</p>
-            <p>Email: {props.user.email}</p>
-            <p>Phone Number: {props.user.phone}</p>
-            <p>Portfolio Website: {props.user.portfolio}</p>
-            <p>LinkedIn profile: {props.user.linkedin}</p>
-            <p>Github Profile: {props.user.github}</p>
-            <img src={props.user.image.src}/>
+            <form name="toHome" onSubmit={props.onSubmit}>
+                <button type="submit" >To Home</button>
+                <h1>Routing Demo</h1>
+                <p>Name: {props.user.name}</p>
+                <p>Organisation: {props.user.org}</p>
+                <p>Designation: {props.user.designation}</p>
+                <p>Email: {props.user.email}</p>
+                <p>Phone Number: {props.user.phone}</p>
+                <p>Portfolio Website: {props.user.portfolio}</p>
+                <p>LinkedIn profile: {props.user.linkedin}</p>
+                <p>Github Profile: {props.user.github}</p>
+                <img src={props.user.image.src}/>
+            </form>
         </div>
     )
 }
