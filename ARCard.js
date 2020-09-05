@@ -1,12 +1,7 @@
 import React, {useEffect} from "react"
 import "aframe"
 
-const hasGetUserMedia = () => {
-    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia || navigator.msGetUserMedia);
-}
-
-const initializeScene = () => {
+const registerClick = () => {
     AFRAME.registerComponent('navigate-on-click', {
         schema: {
           url: {default: ''}
@@ -21,7 +16,15 @@ const initializeScene = () => {
               window.open(data.url, '_blank');
           });
         }
-      }); 
+      });
+}
+
+const hasGetUserMedia = () => {
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+const checkMedia = () => {     
     if (hasGetUserMedia()) {
         // $('#splashScreen').css('display', 'block');
         //$('.arjs-loader').css('display', 'block');
@@ -36,13 +39,66 @@ const initializeScene = () => {
     }
 }
 
+const initializeScene = (props) => {
+    checkMedia()
+    // set scene attributes
+
+    AFRAME.registerComponent('arcardscene', {
+        init: function () {
+            // get scene element
+            var sceneEl = document.querySelector('a-scene'); 
+            // set header text attributes
+            sceneEl.querySelector('#headerText').setAttribute('rotation', {x: -90, y: -90, z: 90});
+            sceneEl.querySelector('#headerText').setAttribute('position', {x: -40, y: 0, z: -620});
+            sceneEl.querySelector('#headerText').setAttribute('text-geometry', {value: "AR Business Card", size: 15});
+            // set name text attributes
+            sceneEl.querySelector('#nameText').setAttribute('rotation', {x: -90, y: -90, z: 90});
+            sceneEl.querySelector('#nameText').setAttribute('position', {x: -100, y: 0, z: -450});
+            sceneEl.querySelector('#nameText').setAttribute('text-geometry', {value: props.user.name, font: '#optimerBoldFont', size: 20});
+            // set logo plane attributes
+            sceneEl.querySelector('#avevaLogo').setAttribute('rotation', {x: -90, y: -90, z: 90});
+            sceneEl.querySelector('#avevaLogo').setAttribute('position', {x: 50, y: 0, z: -570});
+            sceneEl.querySelector('#avevaLogo').setAttribute('height', 200);
+            sceneEl.querySelector('#avevaLogo').setAttribute('width', 476);
+            // set portfolio block attributes
+            sceneEl.querySelector('#portfolioBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
+            sceneEl.querySelector('#portfolioBlock').setAttribute('position', {x: 180, y: 0, z: -400});
+            sceneEl.querySelector('#portfolioBlock').setAttribute('material', {src: '#headshotTexture'});
+            // set linkedin block attributes
+            sceneEl.querySelector('#linkedinBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
+            sceneEl.querySelector('#linkedinBlock').setAttribute('position', {x: -80, y: 0, z: -400});
+            sceneEl.querySelector('#linkedinBlock').setAttribute('material', {src: '#linkedinTexture'});
+            // set github block attributes
+            sceneEl.querySelector('#githubBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
+            sceneEl.querySelector('#githubBlock').setAttribute('position', {x: -80, y: 0, z: -145});
+            sceneEl.querySelector('#githubBlock').setAttribute('material', {src: '#githubTexture'});
+            // set email block attributes
+            sceneEl.querySelector('#emailBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
+            sceneEl.querySelector('#emailBlock').setAttribute('position', {x: 180, y: 0, z: -145});
+            sceneEl.querySelector('#emailBlock').setAttribute('material', {src: '#emailTexture'});
+            // set camera entity attributes   
+            sceneEl.querySelector('#cameraEntity').setAttribute('cursor', {rayOrigin: 'mouse'});
+            // set cursor entity attributes           
+            sceneEl.querySelector('#cursorEntity').setAttribute('cursor', {fuse: true, fuseTimeout: 2000});
+            sceneEl.querySelector('#cursorEntity').setAttribute('raycaster', {objects: '.clickable'});            
+            sceneEl.querySelector('#cursorEntity').setAttribute('position', {x: 0, y: 0, z: -1});
+            sceneEl.querySelector('#cursorEntity').setAttribute('scale', {x: 0.01, y: 0.01, z: 0.01});
+            sceneEl.querySelector('#cursorEntity').setAttribute('geometry', {primitive: 'ring'});      
+            sceneEl.querySelector('#cursorEntity').setAttribute('material', {color: 'white', shader: 'flat'});      
+
+        }
+    })
+    
+    registerClick()
+}
+
 const ARCard = (props) => {
     console.log(props)
 
     useEffect(() => {
-        initializeScene()
+        initializeScene(props)
         return(() => {
-            initializeScene()
+            initializeScene(props)
         })
     })
     
@@ -52,7 +108,7 @@ const ARCard = (props) => {
             <div className="arjs-loader">
                 <div>Loading, please wait...</div>
             </div>
-            <a-scene 
+            <a-scene arcardscene 
                 embedded 
                 keyboard-shortcuts="" 
                 screenshot="" 
@@ -103,26 +159,24 @@ const ARCard = (props) => {
                     smoothThreshold="5"
                     >   
 
-                    <a-entity text-geometry="value: AR Business Card; size: 15" rotation="-90 -90 90" position="-40 0 -620"></a-entity>
-                    <a-entity text-geometry={`"value: ${props.user.name}; font: #optimerBoldFont; size: 20"`} rotation="-90 -90 90" position="-100 0 -450"></a-entity>
+                    <a-entity id="headerText"></a-entity>
+                    <a-entity id="nameText"></a-entity>
 
-                    <a-plane src="#avevaLogo" height="200" width="476" rotation="-90 -90 90" position="50 0 -570"></a-plane>
+                    <a-plane src="#avevaLogo"></a-plane>
 
-                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" material="src: #headshotTexture" rotation="-90 -90 90" position="180 0 -400" navigate-on-click={`url: ${props.user.portfolio}`}></a-entity>
+                    <a-entity id="portfolioBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.portfolio}`}></a-entity>
 
-                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" material="src: #linkedinTexture" rotation="-90 -90 90" position="-80 0 -400" navigate-on-click={`url: ${props.user.linkedin}`}></a-entity>
+                    <a-entity id="linkedinBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.linkedin}`}></a-entity>
 
-                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" material="src: #githubTexture" rotation="-90 -90 90" position="-80 0 -145" navigate-on-click={`url: ${props.user.github}`}></a-entity>
+                    <a-entity id="githubBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.github}`}></a-entity>
 
-                    <a-entity mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" material="src: #emailTexture" rotation="-90 -90 90" position="180 0 -145" navigate-on-click={`url: mailto:${props.user.email}`}></a-entity>
+                    <a-entity id="emailBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: mailto:${props.user.email}`}></a-entity>
                     
                 </a-nft>
 
-                <a-entity camera cursor="rayOrigin: mouse"></a-entity>
+                <a-entity id="cameraEntity" camera></a-entity>
                 
-                <a-entity cursor="fuse: true; fuseTimeout: 2000;" raycaster="objects: .clickable" position="0 0 -1" scale="0.01 0.01 0.01" 
-                    geometry={"primitive: ring"} 
-                    material="color: white; shader: flat" rotation="" visible="" 
+                <a-entity id="cursorEntity" rotation="" visible="" 
                     animation="property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.01 0.01 0.01; to: 0.02 0.02 0.02; dur: 2000" 
                     animation__color="property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000"
                     animation__scalemouseleave="property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.01 0.01 0.01;"
