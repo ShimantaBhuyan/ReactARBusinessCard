@@ -82,8 +82,8 @@ const initializeScene = (props) => {
             // set cursor entity attributes           
             sceneEl.querySelector('#cursorEntity').setAttribute('raycaster', {objects: `.clickable`});      
             sceneEl.querySelector('#cursorEntity').setAttribute('cursor', {fuse: true, fuseTimeout: 2000});      
-            sceneEl.querySelector('#cursorEntity').setAttribute('position', {x: 0, y: 0, z: -1});
-            sceneEl.querySelector('#cursorEntity').setAttribute('scale', {x: 0.01, y: 0.01, z: 0.01});
+            sceneEl.querySelector('#cursorEntity').setAttribute('position', {x: 0, y: 0, z: -2});
+            sceneEl.querySelector('#cursorEntity').setAttribute('scale', {x: 0.1, y: 0.1, z: 0.1});
             sceneEl.querySelector('#cursorEntity').setAttribute('geometry', {primitive: `ring`});      
             sceneEl.querySelector('#cursorEntity').setAttribute('material', {color: `white`, shader: `flat`}); 
 
@@ -177,9 +177,9 @@ const ARCard = (props) => {
                 <a-entity id="cameraEntity" camera></a-entity>
                 
                 <a-entity id="cursorEntity" rotation="" visible="" 
-                    animation="property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.01 0.01 0.01; to: 0.02 0.02 0.02; dur: 2000" 
+                    animation="property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.1 0.1 0.1; to: 0.2 0.2 0.2; dur: 2000" 
                     animation__color="property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000"
-                    animation__scalemouseleave="property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.01 0.01 0.01;"
+                    animation__scalemouseleave="property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.1 0.1 0.1;"
                     animation__colormouseleave="property: components.material.material.color; isRawProperty: true; type: color; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: white;">
                 </a-entity>
                 

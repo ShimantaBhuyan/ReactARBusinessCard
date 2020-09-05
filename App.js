@@ -3,6 +3,8 @@ import React, {useState, useEffect} from "react"
 import UserForm from "./UserForm"
 import ARCard from "./ARCard"
 
+import AScene from "./AScene"
+
 const App = () => {    
     const defaultUser = {        
         name: "",
@@ -71,7 +73,7 @@ const App = () => {
         }
 
     return (  
-        submitted ? <ARCard user={user} /> :
+        submitted ? <ARCard user={user} /> /*<AScene />*/:
             <Home onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
             /*<Sample user={user} onSubmit={handleSubmit}/>*/
     )
