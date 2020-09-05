@@ -54,7 +54,7 @@ const initializeScene = (props) => {
             // set name text attributes
             sceneEl.querySelector('#nameText').setAttribute('rotation', {x: -90, y: -90, z: 90});
             sceneEl.querySelector('#nameText').setAttribute('position', {x: -100, y: 0, z: -450});
-            sceneEl.querySelector('#nameText').setAttribute('text-geometry', {value: props.user.name, font: '#optimerBoldFont', size: 20});
+            sceneEl.querySelector('#nameText').setAttribute('text-geometry', {value: props.user.name, font: `#optimerBoldFont`, size: 20});
             // set logo plane attributes
             sceneEl.querySelector('#avevaLogo').setAttribute('rotation', {x: -90, y: -90, z: 90});
             sceneEl.querySelector('#avevaLogo').setAttribute('position', {x: 50, y: 0, z: -570});
@@ -63,29 +63,31 @@ const initializeScene = (props) => {
             // set portfolio block attributes
             sceneEl.querySelector('#portfolioBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
             sceneEl.querySelector('#portfolioBlock').setAttribute('position', {x: 180, y: 0, z: -400});
-            sceneEl.querySelector('#portfolioBlock').setAttribute('material', {src: '#headshotTexture'});
+            sceneEl.querySelector('#portfolioBlock').setAttribute('material', {src: `#headshotTexture`});
             // set linkedin block attributes
             sceneEl.querySelector('#linkedinBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
             sceneEl.querySelector('#linkedinBlock').setAttribute('position', {x: -80, y: 0, z: -400});
-            sceneEl.querySelector('#linkedinBlock').setAttribute('material', {src: '#linkedinTexture'});
+            sceneEl.querySelector('#linkedinBlock').setAttribute('material', {src: `#linkedinTexture`});
             // set github block attributes
             sceneEl.querySelector('#githubBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
             sceneEl.querySelector('#githubBlock').setAttribute('position', {x: -80, y: 0, z: -145});
-            sceneEl.querySelector('#githubBlock').setAttribute('material', {src: '#githubTexture'});
+            sceneEl.querySelector('#githubBlock').setAttribute('material', {src: `#githubTexture`});
             // set email block attributes
             sceneEl.querySelector('#emailBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
             sceneEl.querySelector('#emailBlock').setAttribute('position', {x: 180, y: 0, z: -145});
-            sceneEl.querySelector('#emailBlock').setAttribute('material', {src: '#emailTexture'});
+            sceneEl.querySelector('#emailBlock').setAttribute('material', {src: `#emailTexture`});
             // set camera entity attributes   
-            sceneEl.querySelector('#cameraEntity').setAttribute('cursor', {rayOrigin: 'mouse'});
+            sceneEl.querySelector('#cameraEntity').setAttribute('cursor', {rayOrigin: `mouse`});
             // set cursor entity attributes           
-            sceneEl.querySelector('#cursorEntity').setAttribute('cursor', {fuse: true, fuseTimeout: 2000});
-            sceneEl.querySelector('#cursorEntity').setAttribute('raycaster', {objects: '.clickable'});            
+            sceneEl.querySelector('#cursorEntity').setAttribute('raycaster', {objects: `.clickable`});      
+            sceneEl.querySelector('#cursorEntity').setAttribute('cursor', {fuse: true, fuseTimeout: 2000});      
             sceneEl.querySelector('#cursorEntity').setAttribute('position', {x: 0, y: 0, z: -1});
             sceneEl.querySelector('#cursorEntity').setAttribute('scale', {x: 0.01, y: 0.01, z: 0.01});
-            sceneEl.querySelector('#cursorEntity').setAttribute('geometry', {primitive: 'ring'});      
-            sceneEl.querySelector('#cursorEntity').setAttribute('material', {color: 'white', shader: 'flat'});      
+            sceneEl.querySelector('#cursorEntity').setAttribute('geometry', {primitive: `ring`});      
+            sceneEl.querySelector('#cursorEntity').setAttribute('material', {color: `white`, shader: `flat`}); 
 
+            // need to set manually since attributes were not updating in DOM
+            document.querySelector('a-scene').flushToDOM(true);  // Flush every entity.
         }
     })
     

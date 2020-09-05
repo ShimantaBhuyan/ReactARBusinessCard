@@ -107708,7 +107708,7 @@ var initializeScene = function initializeScene(props) {
       });
       sceneEl.querySelector('#nameText').setAttribute('text-geometry', {
         value: props.user.name,
-        font: '#optimerBoldFont',
+        font: "#optimerBoldFont",
         size: 20
       }); // set logo plane attributes
 
@@ -107736,7 +107736,7 @@ var initializeScene = function initializeScene(props) {
         z: -400
       });
       sceneEl.querySelector('#portfolioBlock').setAttribute('material', {
-        src: '#headshotTexture'
+        src: "#headshotTexture"
       }); // set linkedin block attributes
 
       sceneEl.querySelector('#linkedinBlock').setAttribute('rotation', {
@@ -107750,7 +107750,7 @@ var initializeScene = function initializeScene(props) {
         z: -400
       });
       sceneEl.querySelector('#linkedinBlock').setAttribute('material', {
-        src: '#linkedinTexture'
+        src: "#linkedinTexture"
       }); // set github block attributes
 
       sceneEl.querySelector('#githubBlock').setAttribute('rotation', {
@@ -107764,7 +107764,7 @@ var initializeScene = function initializeScene(props) {
         z: -145
       });
       sceneEl.querySelector('#githubBlock').setAttribute('material', {
-        src: '#githubTexture'
+        src: "#githubTexture"
       }); // set email block attributes
 
       sceneEl.querySelector('#emailBlock').setAttribute('rotation', {
@@ -107778,19 +107778,19 @@ var initializeScene = function initializeScene(props) {
         z: -145
       });
       sceneEl.querySelector('#emailBlock').setAttribute('material', {
-        src: '#emailTexture'
+        src: "#emailTexture"
       }); // set camera entity attributes   
 
       sceneEl.querySelector('#cameraEntity').setAttribute('cursor', {
-        rayOrigin: 'mouse'
+        rayOrigin: "mouse"
       }); // set cursor entity attributes           
 
+      sceneEl.querySelector('#cursorEntity').setAttribute('raycaster', {
+        objects: ".clickable"
+      });
       sceneEl.querySelector('#cursorEntity').setAttribute('cursor', {
         fuse: true,
         fuseTimeout: 2000
-      });
-      sceneEl.querySelector('#cursorEntity').setAttribute('raycaster', {
-        objects: '.clickable'
       });
       sceneEl.querySelector('#cursorEntity').setAttribute('position', {
         x: 0,
@@ -107803,12 +107803,14 @@ var initializeScene = function initializeScene(props) {
         z: 0.01
       });
       sceneEl.querySelector('#cursorEntity').setAttribute('geometry', {
-        primitive: 'ring'
+        primitive: "ring"
       });
       sceneEl.querySelector('#cursorEntity').setAttribute('material', {
-        color: 'white',
-        shader: 'flat'
-      });
+        color: "white",
+        shader: "flat"
+      }); // need to set manually since attributes were not updating in DOM
+
+      document.querySelector('a-scene').flushToDOM(true); // Flush every entity.
     }
   });
   registerClick();
@@ -108123,7 +108125,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56332" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62408" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
