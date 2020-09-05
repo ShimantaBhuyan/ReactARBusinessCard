@@ -47,7 +47,7 @@ const initializeScene = (props) => {
         init: function () {   
             registerClick()
             // get scene element
-            var sceneEl = document.querySelector('a-scene'); 
+            var sceneEl = this.el; 
             // set header text attributes
             sceneEl.querySelector('#headerText').setAttribute('rotation', {x: -90, y: -90, z: 90});
             sceneEl.querySelector('#headerText').setAttribute('position', {x: -40, y: 0, z: -620});
@@ -88,7 +88,7 @@ const initializeScene = (props) => {
             sceneEl.querySelector('#cursorEntity').setAttribute('material', {color: `white`, shader: `flat`}); 
 
             // need to set manually since attributes were not updating in DOM
-            document.querySelector('a-scene').flushToDOM(true);  // Flush every entity.
+            sceneEl.flushToDOM(true);  // Flush every entity.
         }
     })
 }
@@ -104,11 +104,12 @@ const ARCard = (props) => {
     }) 
 
     return(
-        <div id="ARCardWrapper">
+        <>
             <div className="arjs-loader">
                 <div>Loading, please wait...</div>
             </div>
-            <a-scene arcardscene 
+            <a-scene 
+                arcardscene 
                 embedded 
                 keyboard-shortcuts="" 
                 screenshot="" 
@@ -174,6 +175,8 @@ const ARCard = (props) => {
                     
                 </a-nft>
 
+                <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" />
+
                 <a-entity id="cameraEntity" camera></a-entity>
                 
                 <a-entity id="cursorEntity" rotation="" visible="" 
@@ -184,7 +187,7 @@ const ARCard = (props) => {
                 </a-entity>
                 
             </a-scene>
-        </div>
+        </>
     )
 }
 
