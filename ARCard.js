@@ -1,6 +1,26 @@
 import React, {useEffect} from "react"
 //import "aframe"
 
+const hasGetUserMedia = () => {
+    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+const checkMedia = () => {
+    if (hasGetUserMedia()) {
+        // $('#splashScreen').css('display', 'block');
+        //$('.arjs-loader').css('display', 'block');
+        document.getElementsByClassName("arjs-loader")[0].style.display = "block";
+    } else {
+        /* 
+        let template = '<p>This feature is not supported in your browser. Please try again using a different device and/or browser.</p>';
+        $('#noMedia').append(template);
+        $('#noMedia').css('display', 'block');
+        */
+        alert("This feature is not supported in your browser. Please try again using a different device and/or browser.");
+    }
+}
+
 const registerClick = () => {
     AFRAME.registerComponent('navigate-on-click', {
         schema: {
@@ -19,32 +39,13 @@ const registerClick = () => {
       });
 }
 
-const hasGetUserMedia = () => {
-    return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
-    navigator.mozGetUserMedia || navigator.msGetUserMedia);
-}
-
-const checkMedia = () => {     
-    if (hasGetUserMedia()) {
-        // $('#splashScreen').css('display', 'block');
-        //$('.arjs-loader').css('display', 'block');
-        document.getElementsByClassName("arjs-loader")[0].style.display = "block";
-    } else {
-        /* 
-        let template = '<p>This feature is not supported in your browser. Please try again using a different device and/or browser.</p>';
-        $('#noMedia').append(template);
-        $('#noMedia').css('display', 'block');
-         */
-        alert("This feature is not supported in your browser. Please try again using a different device and/or browser.");
-    }
-}
-
-const initializeScene = (props) => {
+const initializeScene = (props) => {    
     checkMedia()
-    // set scene attributes
 
+    // set scene attributes
     AFRAME.registerComponent('arcardscene', {
-        init: function () {
+        init: function () {   
+            registerClick()
             // get scene element
             var sceneEl = document.querySelector('a-scene'); 
             // set header text attributes
@@ -56,10 +57,10 @@ const initializeScene = (props) => {
             sceneEl.querySelector('#nameText').setAttribute('position', {x: -100, y: 0, z: -450});
             sceneEl.querySelector('#nameText').setAttribute('text-geometry', {value: props.user.name, font: `#optimerBoldFont`, size: 20});
             // set logo plane attributes
-            sceneEl.querySelector('#avevaLogo').setAttribute('rotation', {x: -90, y: -90, z: 90});
-            sceneEl.querySelector('#avevaLogo').setAttribute('position', {x: 50, y: 0, z: -570});
-            sceneEl.querySelector('#avevaLogo').setAttribute('height', 200);
-            sceneEl.querySelector('#avevaLogo').setAttribute('width', 476);
+            sceneEl.querySelector('#avevaLogoPlane').setAttribute('rotation', {x: -90, y: -90, z: 90});
+            sceneEl.querySelector('#avevaLogoPlane').setAttribute('position', {x: 50, y: 0, z: -570});
+            sceneEl.querySelector('#avevaLogoPlane').setAttribute('height', 200);
+            sceneEl.querySelector('#avevaLogoPlane').setAttribute('width', 476);
             // set portfolio block attributes
             sceneEl.querySelector('#portfolioBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
             sceneEl.querySelector('#portfolioBlock').setAttribute('position', {x: 180, y: 0, z: -400});
@@ -90,8 +91,6 @@ const initializeScene = (props) => {
             document.querySelector('a-scene').flushToDOM(true);  // Flush every entity.
         }
     })
-    
-    registerClick()
 }
 
 const ARCard = (props) => {
@@ -102,8 +101,7 @@ const ARCard = (props) => {
         return(() => {
             initializeScene(props)
         })
-    })
-    
+    }) 
 
     return(
         <div id="ARCardWrapper">
@@ -164,7 +162,7 @@ const ARCard = (props) => {
                     <a-entity id="headerText"></a-entity>
                     <a-entity id="nameText"></a-entity>
 
-                    <a-plane src="#avevaLogo"></a-plane>
+                    <a-plane src="#avevaLogo" id="avevaLogoPlane"></a-plane>
 
                     <a-entity id="portfolioBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.portfolio}`}></a-entity>
 

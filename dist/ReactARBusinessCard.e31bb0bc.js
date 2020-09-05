@@ -28378,6 +28378,25 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 //import "aframe"
+var hasGetUserMedia = function hasGetUserMedia() {
+  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+};
+
+var checkMedia = function checkMedia() {
+  if (hasGetUserMedia()) {
+    // $('#splashScreen').css('display', 'block');
+    //$('.arjs-loader').css('display', 'block');
+    document.getElementsByClassName("arjs-loader")[0].style.display = "block";
+  } else {
+    /* 
+    let template = '<p>This feature is not supported in your browser. Please try again using a different device and/or browser.</p>';
+    $('#noMedia').append(template);
+    $('#noMedia').css('display', 'block');
+    */
+    alert("This feature is not supported in your browser. Please try again using a different device and/or browser.");
+  }
+};
+
 var registerClick = function registerClick() {
   AFRAME.registerComponent('navigate-on-click', {
     schema: {
@@ -28396,31 +28415,13 @@ var registerClick = function registerClick() {
   });
 };
 
-var hasGetUserMedia = function hasGetUserMedia() {
-  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
-};
-
-var checkMedia = function checkMedia() {
-  if (hasGetUserMedia()) {
-    // $('#splashScreen').css('display', 'block');
-    //$('.arjs-loader').css('display', 'block');
-    document.getElementsByClassName("arjs-loader")[0].style.display = "block";
-  } else {
-    /* 
-    let template = '<p>This feature is not supported in your browser. Please try again using a different device and/or browser.</p>';
-    $('#noMedia').append(template);
-    $('#noMedia').css('display', 'block');
-     */
-    alert("This feature is not supported in your browser. Please try again using a different device and/or browser.");
-  }
-};
-
 var initializeScene = function initializeScene(props) {
   checkMedia(); // set scene attributes
 
   AFRAME.registerComponent('arcardscene', {
     init: function init() {
-      // get scene element
+      registerClick(); // get scene element
+
       var sceneEl = document.querySelector('a-scene'); // set header text attributes
 
       sceneEl.querySelector('#headerText').setAttribute('rotation', {
@@ -28454,18 +28455,18 @@ var initializeScene = function initializeScene(props) {
         size: 20
       }); // set logo plane attributes
 
-      sceneEl.querySelector('#avevaLogo').setAttribute('rotation', {
+      sceneEl.querySelector('#avevaLogoPlane').setAttribute('rotation', {
         x: -90,
         y: -90,
         z: 90
       });
-      sceneEl.querySelector('#avevaLogo').setAttribute('position', {
+      sceneEl.querySelector('#avevaLogoPlane').setAttribute('position', {
         x: 50,
         y: 0,
         z: -570
       });
-      sceneEl.querySelector('#avevaLogo').setAttribute('height', 200);
-      sceneEl.querySelector('#avevaLogo').setAttribute('width', 476); // set portfolio block attributes
+      sceneEl.querySelector('#avevaLogoPlane').setAttribute('height', 200);
+      sceneEl.querySelector('#avevaLogoPlane').setAttribute('width', 476); // set portfolio block attributes
 
       sceneEl.querySelector('#portfolioBlock').setAttribute('rotation', {
         x: -90,
@@ -28555,7 +28556,6 @@ var initializeScene = function initializeScene(props) {
       document.querySelector('a-scene').flushToDOM(true); // Flush every entity.
     }
   });
-  registerClick();
 };
 
 var ARCard = function ARCard(props) {
@@ -28635,7 +28635,8 @@ var ARCard = function ARCard(props) {
   }), /*#__PURE__*/_react.default.createElement("a-entity", {
     id: "nameText"
   }), /*#__PURE__*/_react.default.createElement("a-plane", {
-    src: "#avevaLogo"
+    src: "#avevaLogo",
+    id: "avevaLogoPlane"
   }), /*#__PURE__*/_react.default.createElement("a-entity", {
     id: "portfolioBlock",
     mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
@@ -28867,7 +28868,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61689" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57745" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
