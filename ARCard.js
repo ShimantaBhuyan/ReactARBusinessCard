@@ -1,5 +1,5 @@
 import React, {useEffect} from "react"
-import "aframe"
+//import "aframe"
 
 const registerClick = () => {
     AFRAME.registerComponent('navigate-on-click', {
