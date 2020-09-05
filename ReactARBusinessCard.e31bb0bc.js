@@ -28422,7 +28422,7 @@ var initializeScene = function initializeScene(props) {
     init: function init() {
       registerClick(); // get scene element
 
-      var sceneEl = document.querySelector('a-scene'); // set header text attributes
+      var sceneEl = this.el; // set header text attributes
 
       sceneEl.querySelector('#headerText').setAttribute('rotation', {
         x: -90,
@@ -28553,7 +28553,7 @@ var initializeScene = function initializeScene(props) {
         shader: "flat"
       }); // need to set manually since attributes were not updating in DOM
 
-      document.querySelector('a-scene').flushToDOM(true); // Flush every entity.
+      sceneEl.flushToDOM(true); // Flush every entity.
     }
   });
 };
@@ -28566,9 +28566,7 @@ var ARCard = function ARCard(props) {
       initializeScene(props);
     };
   });
-  return /*#__PURE__*/_react.default.createElement("div", {
-    id: "ARCardWrapper"
-  }, /*#__PURE__*/_react.default.createElement("div", {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "arjs-loader"
   }, /*#__PURE__*/_react.default.createElement("div", null, "Loading, please wait...")), /*#__PURE__*/_react.default.createElement("a-scene", {
     arcardscene: true,
@@ -28657,7 +28655,11 @@ var ARCard = function ARCard(props) {
     mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
     class: "clickable",
     "navigate-on-click": "url: mailto:".concat(props.user.email)
-  })), /*#__PURE__*/_react.default.createElement("a-entity", {
+  })), /*#__PURE__*/_react.default.createElement("a-sphere", {
+    position: "0 1.25 -5",
+    radius: "1.25",
+    color: "#EF2D5E"
+  }), /*#__PURE__*/_react.default.createElement("a-entity", {
     id: "cameraEntity",
     camera: true
   }), /*#__PURE__*/_react.default.createElement("a-entity", {
@@ -28666,7 +28668,7 @@ var ARCard = function ARCard(props) {
     visible: "",
     animation: "property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.1 0.1 0.1; to: 0.2 0.2 0.2; dur: 2000",
     animation__color: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000",
-    animation__scalemouseleave: "property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.01 0.01 0.01;",
+    animation__scalemouseleave: "property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.1 0.1 0.1;",
     animation__colormouseleave: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: white;"
   })));
 };
@@ -28855,11 +28857,13 @@ var App = function App() {
     backgroundRepeat: "no-repeat",
     height: "300px"
   };
-  return submitted ?
+  return submitted ? /*#__PURE__*/_react.default.createElement(_ARCard.default, {
+    user: user
+  })
+  /*<AScene />*/
+  :
   /*#__PURE__*/
-
-  /*<ARCard user={user} />*/
-  _react.default.createElement(_AScene.default, null) : /*#__PURE__*/_react.default.createElement(Home, {
+  _react.default.createElement(Home, {
     onChange: handleChange,
     onSubmit: handleSubmit,
     user: user,
@@ -28934,7 +28938,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55659" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63169" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
