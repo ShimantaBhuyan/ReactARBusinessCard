@@ -28538,12 +28538,12 @@ var initializeScene = function initializeScene(props) {
       sceneEl.querySelector('#cursorEntity').setAttribute('position', {
         x: 0,
         y: 0,
-        z: -1
+        z: -2
       });
       sceneEl.querySelector('#cursorEntity').setAttribute('scale', {
-        x: 0.01,
-        y: 0.01,
-        z: 0.01
+        x: 0.1,
+        y: 0.1,
+        z: 0.1
       });
       sceneEl.querySelector('#cursorEntity').setAttribute('geometry', {
         primitive: "ring"
@@ -28664,7 +28664,7 @@ var ARCard = function ARCard(props) {
     id: "cursorEntity",
     rotation: "",
     visible: "",
-    animation: "property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.01 0.01 0.01; to: 0.02 0.02 0.02; dur: 2000",
+    animation: "property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.1 0.1 0.1; to: 0.2 0.2 0.2; dur: 2000",
     animation__color: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000",
     animation__scalemouseleave: "property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.01 0.01 0.01;",
     animation__colormouseleave: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: white;"
@@ -28673,7 +28673,69 @@ var ARCard = function ARCard(props) {
 
 var _default = ARCard;
 exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js"}],"img.jpg":[function(require,module,exports) {
+module.exports = "/img.81050c0a.jpg";
+},{}],"AScene.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//import "aframe"
+var AScene = function AScene() {
+  return /*#__PURE__*/_react.default.createElement("a-scene", null, /*#__PURE__*/_react.default.createElement("a-box", {
+    position: "-1 0.5 -3",
+    rotation: "0 45 0",
+    color: "#4CC3D9"
+  }), /*#__PURE__*/_react.default.createElement("a-sphere", {
+    position: "0 1.25 -5",
+    radius: "1.25",
+    color: "#EF2D5E"
+  }), /*#__PURE__*/_react.default.createElement("a-cylinder", {
+    position: "1 0.75 -3",
+    radius: "0.5",
+    height: "1.5",
+    color: "#FFC65D"
+  }), /*#__PURE__*/_react.default.createElement("a-plane", {
+    position: "0 0 -4",
+    rotation: "-90 0 0",
+    width: "4",
+    height: "4",
+    color: "#7BC8A4"
+  }), /*#__PURE__*/_react.default.createElement("a-dodecahedron", {
+    color: "#FF926B",
+    radius: "5",
+    position: "0 -1 -30"
+  }), /*#__PURE__*/_react.default.createElement("a-sky", {
+    src: require('./img.jpg')
+  }), /*#__PURE__*/_react.default.createElement("a-entity", {
+    camera: true,
+    cursor: "rayOrigin: mouse"
+  }), /*#__PURE__*/_react.default.createElement("a-entity", {
+    cursor: "fuse: true; fuseTimeout: 2000;",
+    raycaster: "objects: .clickable",
+    position: "0 0 -6",
+    scale: "0.1 0.1 0.1",
+    geometry: "primitive: ring;",
+    material: "color: white; shader: flat",
+    rotation: "",
+    visible: "",
+    animation: "property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.01 0.01 0.01; to: 0.02 0.02 0.02; dur: 2000",
+    animation__color: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000",
+    animation__scalemouseleave: "property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.01 0.01 0.01;",
+    animation__colormouseleave: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: white;"
+  }));
+};
+
+var _default = AScene;
+exports.default = _default;
+},{"react":"node_modules/react/index.js","./img.jpg":"img.jpg"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28686,6 +28748,8 @@ var _react = _interopRequireWildcard(require("react"));
 var _UserForm = _interopRequireDefault(require("./UserForm"));
 
 var _ARCard = _interopRequireDefault(require("./ARCard"));
+
+var _AScene = _interopRequireDefault(require("./AScene"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28791,9 +28855,11 @@ var App = function App() {
     backgroundRepeat: "no-repeat",
     height: "300px"
   };
-  return submitted ? /*#__PURE__*/_react.default.createElement(_ARCard.default, {
-    user: user
-  }) : /*#__PURE__*/_react.default.createElement(Home, {
+  return submitted ?
+  /*#__PURE__*/
+
+  /*<ARCard user={user} />*/
+  _react.default.createElement(_AScene.default, null) : /*#__PURE__*/_react.default.createElement(Home, {
     onChange: handleChange,
     onSubmit: handleSubmit,
     user: user,
@@ -28828,7 +28894,7 @@ var Sample = function Sample(props) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./UserForm":"UserForm.js","./ARCard":"ARCard.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./UserForm":"UserForm.js","./ARCard":"ARCard.js","./AScene":"AScene.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -28868,7 +28934,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57745" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55659" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
