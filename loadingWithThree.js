@@ -158,11 +158,11 @@ const initializeAR = () => {
         //matrixCodeType: '3x3',
         canvasWidth: 480,
         canvasHeight: 640,
-    }, {
+    }/* , {
         sourceWidth: 480,
         sourceHeight: 640,
         //sourceType: 'webcam',
-    })
+    } */)
 
     // initialize it
     arToolkitContext.init(function onCompleted(){

@@ -75,7 +75,7 @@ const App = () => {
         }
 
     return (  
-        submitted ? <NFT /> /*<ARCard user={user} />*/ /*<AScene />*/:
+        submitted ? /*<NFT />*/ <ARCard user={user} /> /*<AScene />*/:
             <Home onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
             /*<Sample user={user} onSubmit={handleSubmit}/>*/
     )
