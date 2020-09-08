@@ -28777,18 +28777,20 @@ var initializeAR = function initializeAR() {
 
 
   console.log(window.innerWidth);
-  console.log(window.innerHeight); // create atToolkitContext
+  console.log(window.innerHeight);
+  var viewPortWidth = window.innerWidth;
+  var viewPortHeight = window.innerHeight; // create atToolkitContext
 
   var arToolkitContext = new THREEx.ArToolkitContext({
-    //detectionMode: 'mono',
-    detectionMode: 'color_and_matrix',
-    matrixCodeType: '3x3',
-    canvasWidth: window.innerWidth,
-    canvasHeight: window.innerHeight
+    detectionMode: 'mono',
+    //detectionMode: 'color_and_matrix',
+    //matrixCodeType: '3x3',
+    canvasWidth: 480,
+    canvasHeight: 640
   }, {
-    sourceWidth: window.innerWidth,
-    sourceHeight: window.innerHeight,
-    sourceType: 'webcam'
+    sourceWidth: 480,
+    sourceHeight: 640 //sourceType: 'webcam',
+
   }); // initialize it
 
   arToolkitContext.init(function onCompleted() {
@@ -28858,13 +28860,11 @@ var initializeAR = function initializeAR() {
   sphere.scale.set(80, 80, 80);
 
   var animate = function animate() {
-    requestAnimationFrame(animate);
-
-    if (mixers.length > 0) {
-      for (var i = 0; i < mixers.length; i++) {
-        mixers[i].update(clock.getDelta());
-      }
-    }
+    requestAnimationFrame(animate); // if (mixers.length > 0) {
+    //     for (var i = 0; i < mixers.length; i++) {
+    //         mixers[i].update(clock.getDelta());
+    //     }
+    // }
 
     if (!arToolkitSource.ready) {
       return;
@@ -29098,7 +29098,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52825" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62367" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
