@@ -148,11 +148,11 @@ const initializeAR = () => {
     // create atToolkitContext
     var arToolkitContext = new THREEx.ArToolkitContext({
         detectionMode: 'mono',
-        canvasWidth: 480,
-        canvasHeight: 640,
+        canvasWidth: 1024,
+        canvasHeight: 768,
     }, {
-        sourceWidth: 480,
-        sourceHeight: 640,
+        sourceWidth: 1024,
+        sourceHeight: 768,
     })
 
     // initialize it
