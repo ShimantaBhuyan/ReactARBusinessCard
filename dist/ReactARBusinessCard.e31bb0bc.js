@@ -28774,16 +28774,21 @@ var initializeAR = function initializeAR() {
   } ////////////////////////////////////////////////////////////////////////////////
   //          initialize arToolkitContext
   ////////////////////////////////////////////////////////////////////////////////
-  // create atToolkitContext
 
+
+  console.log(window.innerWidth);
+  console.log(window.innerHeight); // create atToolkitContext
 
   var arToolkitContext = new THREEx.ArToolkitContext({
-    detectionMode: 'mono',
-    canvasWidth: 480,
-    canvasHeight: 640
+    //detectionMode: 'mono',
+    detectionMode: 'color_and_matrix',
+    matrixCodeType: '3x3',
+    canvasWidth: window.innerWidth,
+    canvasHeight: window.innerHeight
   }, {
-    sourceWidth: 480,
-    sourceHeight: 640
+    sourceWidth: window.innerWidth,
+    sourceHeight: window.innerHeight,
+    sourceType: 'webcam'
   }); // initialize it
 
   arToolkitContext.init(function onCompleted() {
@@ -29093,7 +29098,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65284" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52825" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

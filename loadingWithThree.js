@@ -145,14 +145,20 @@ const initializeAR = () => {
     //          initialize arToolkitContext
     ////////////////////////////////////////////////////////////////////////////////
 
+    console.log(window.innerWidth)
+    console.log(window.innerHeight)
+
     // create atToolkitContext
     var arToolkitContext = new THREEx.ArToolkitContext({
-        detectionMode: 'mono',
-        canvasWidth: 1024,
-        canvasHeight: 768,
+        //detectionMode: 'mono',
+        detectionMode: 'color_and_matrix',
+        matrixCodeType: '3x3',
+        canvasWidth: window.innerWidth,
+        canvasHeight: window.innerHeight,
     }, {
-        sourceWidth: 1024,
-        sourceHeight: 768,
+        sourceWidth: window.innerWidth,
+        sourceHeight: window.innerHeight,
+        sourceType: 'webcam',
     })
 
     // initialize it
