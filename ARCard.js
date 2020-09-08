@@ -101,7 +101,7 @@ const initializeScene = (props) => {
             sceneEl.querySelector('#cursorEntity').setAttribute('material', {color: `white`, shader: `flat`}); 
 
             // need to set manually since attributes were not updating in DOM
-            //sceneEl.flushToDOM(true);  // Flush every entity.
+            sceneEl.flushToDOM(true);  // Flush every entity.
         }
     })
 }
