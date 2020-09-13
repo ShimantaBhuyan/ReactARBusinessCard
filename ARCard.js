@@ -117,93 +117,116 @@ const ARCard = (props) => {
     }) 
 
     return(
-        <>
-            <div className="arjs-loader">
-                <div>Loading, please wait...</div>
-            </div>
-            <a-scene 
-                arcardscene
-                embedded 
-                keyboard-shortcuts="" 
-                screenshot="" 
-                aframe-inspector-removed-embedded="undefined"            
-                vr-mode-ui="enabled: false;"
-                renderer="logarithmicDepthBuffer: true;"
-                arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+        // <>
+        //     <div className="arjs-loader">
+        //         <div>Loading, please wait...</div>
+        //     </div>
+        //     <a-scene 
+        //         arcardscene
+        //         embedded 
+        //         keyboard-shortcuts="" 
+        //         screenshot="" 
+        //         aframe-inspector-removed-embedded="undefined"            
+        //         vr-mode-ui="enabled: false;"
+        //         renderer="logarithmicDepthBuffer: true;"
+        //         arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
             
-                <canvas className="a-canvas" data-aframe-canvas="true" width="300" height="150"></canvas>
+        //         <canvas className="a-canvas" data-aframe-canvas="true" width="300" height="150"></canvas>
 
-                <a-assets>
-                    <img crossOrigin="anonymous" id="skypeTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostSkype.png?1528821334003" />
-                    <img crossOrigin="anonymous" id="emailTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostEmail.png?1528821333360" />
-                    <img crossOrigin="anonymous" id="linkedinTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostLinkedin.png?1528821333139" />
-                    <img crossOrigin="anonymous" id="githubTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostGithub.png?1528821333564" />   
-                    <img crossOrigin="anonymous" id="headshotTexture" src="/ReactARBusinessCard/assets/headshot.jpg" />               
-                    <img crossOrigin="anonymous" id="avevaLogo" src="/ReactARBusinessCard/assets/AVEVA_Logo_color_RGB.png"/>
+        //         <a-assets>
+        //             <img crossOrigin="anonymous" id="skypeTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostSkype.png?1528821334003" />
+        //             <img crossOrigin="anonymous" id="emailTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostEmail.png?1528821333360" />
+        //             <img crossOrigin="anonymous" id="linkedinTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostLinkedin.png?1528821333139" />
+        //             <img crossOrigin="anonymous" id="githubTexture" src="https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostGithub.png?1528821333564" />   
+        //             <img crossOrigin="anonymous" id="headshotTexture" src="/ReactARBusinessCard/assets/headshot.jpg" />               
+        //             <img crossOrigin="anonymous" id="avevaLogo" src="/ReactARBusinessCard/assets/AVEVA_Logo_color_RGB.png"/>
 
-                    <a-mixin id="cube" geometry={"primitive: box"} radius="5" scale="40 40 40" rotation="0 0 0"></a-mixin>
-                    <a-mixin id="mouseEnterAnimation" 
-                        animation__mouseenter="property: rotation; 
-                            startEvents: mouseenter; 
-                            pauseEvents: mouseleave; 
-                            from: 0 0 0; 
-                            to: 0 0 360; 
-                            loop: true; 
-                            dur: 2000; 
-                            dir: alternate; 
-                            easing: linear;">
-                    </a-mixin>
-                    <a-mixin id="mouseLeaveAnimation"
-                        animation__mouseleave="property: rotation; 
-                            startEvents: mouseleave; 
-                            loop: false; 
-                            dur: 1500; 
-                            to: 0 0 0;">
-                    </a-mixin>
+        //             <a-mixin id="cube" geometry={"primitive: box"} radius="5" scale="40 40 40" rotation="0 0 0"></a-mixin>
+        //             <a-mixin id="mouseEnterAnimation" 
+        //                 animation__mouseenter="property: rotation; 
+        //                     startEvents: mouseenter; 
+        //                     pauseEvents: mouseleave; 
+        //                     from: 0 0 0; 
+        //                     to: 0 0 360; 
+        //                     loop: true; 
+        //                     dur: 2000; 
+        //                     dir: alternate; 
+        //                     easing: linear;">
+        //             </a-mixin>
+        //             <a-mixin id="mouseLeaveAnimation"
+        //                 animation__mouseleave="property: rotation; 
+        //                     startEvents: mouseleave; 
+        //                     loop: false; 
+        //                     dur: 1500; 
+        //                     to: 0 0 0;">
+        //             </a-mixin>
 
-                    <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
-                </a-assets>
+        //             <a-asset-item id="optimerBoldFont" src="https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"></a-asset-item>
+        //         </a-assets>
               
-                <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" />
+        //         <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E" />
 
-                <a-nft
-                    markerhandler
-                    type="nft"
-                    url="/ReactARBusinessCard/assets/AVEVA_ID_CARD_markerData/AVEVA_ID_CARD"
-                    smooth="true"
-                    smoothCount="10"
-                    smoothTolerance=".01"
-                    smoothThreshold="5"
-                    >  
+        //         <a-nft
+        //             markerhandler
+        //             type="nft"
+        //             url="/ReactARBusinessCard/assets/AVEVA_ID_CARD_markerData/AVEVA_ID_CARD"
+        //             smooth="true"
+        //             smoothCount="10"
+        //             smoothTolerance=".01"
+        //             smoothThreshold="5"
+        //             >  
                     
-                    <a-entity id="headerText"></a-entity>
-                    <a-entity id="nameText"></a-entity>
+        //             <a-entity id="headerText"></a-entity>
+        //             <a-entity id="nameText"></a-entity>
 
-                    <a-plane src="#avevaLogo" id="avevaLogoPlane"></a-plane>
+        //             <a-plane src="#avevaLogo" id="avevaLogoPlane"></a-plane>
 
-                    <a-entity id="portfolioBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.portfolio}`}></a-entity>
+        //             <a-entity id="portfolioBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.portfolio}`}></a-entity>
 
-                    <a-entity id="linkedinBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.linkedin}`}></a-entity>
+        //             <a-entity id="linkedinBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.linkedin}`}></a-entity>
 
-                    <a-entity id="githubBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.github}`}></a-entity>
+        //             <a-entity id="githubBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.github}`}></a-entity>
 
-                    <a-entity id="emailBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: mailto:${props.user.email}`}></a-entity>
+        //             <a-entity id="emailBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: mailto:${props.user.email}`}></a-entity>
                                         
-                    {/*<a-box position='45 45 27.5' scale='90 90 90' material='opacity: 0.5;'></a-box>*/}
+        //             {/*<a-box position='45 45 27.5' scale='90 90 90' material='opacity: 0.5;'></a-box>*/}
                     
-                </a-nft>
+        //         </a-nft>
 
-                <a-entity id="cameraEntity" camera></a-entity>
+        //         <a-entity id="cameraEntity" camera></a-entity>
                 
-                <a-entity id="cursorEntity" rotation="" visible="" 
-                    animation="property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.1 0.1 0.1; to: 0.2 0.2 0.2; dur: 2000" 
-                    animation__color="property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000"
-                    animation__scalemouseleave="property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.1 0.1 0.1;"
-                    animation__colormouseleave="property: components.material.material.color; isRawProperty: true; type: color; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: white;">
-                </a-entity>
+        //         <a-entity id="cursorEntity" rotation="" visible="" 
+        //             animation="property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.1 0.1 0.1; to: 0.2 0.2 0.2; dur: 2000" 
+        //             animation__color="property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000"
+        //             animation__scalemouseleave="property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.1 0.1 0.1;"
+        //             animation__colormouseleave="property: components.material.material.color; isRawProperty: true; type: color; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: white;">
+        //         </a-entity>
                 
-            </a-scene>
-        </>
+        //     </a-scene>
+        // </>
+        <a-scene
+            vr-mode-ui="enabled: false;"
+            renderer="logarithmicDepthBuffer: true;"
+            embedded
+            arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+        >
+            <a-nft
+            type="nft"
+            url="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/trex-image/trex"
+            smooth="true"
+            smoothCount="10"
+            smoothTolerance=".01"
+            smoothThreshold="5"
+            >
+            <a-entity
+                gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
+                scale="5 5 5"
+                position="50 150 0"
+            >
+            </a-entity>
+            </a-nft>
+            <a-entity camera></a-entity>
+        </a-scene>
     )
 }
 
