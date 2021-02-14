@@ -177,7 +177,7 @@ const initializeAR = () => {
     // init controls for camera
     var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
         type : 'nft',
-        descriptorsUrl : '/ReactARBusinessCard/assets/AVEVA_ID_CARD_markerData/AVEVA_ID_CARD',
+        descriptorsUrl : '/ReactARBusinessCard/assets/headshotMarkerData/headshot',
         changeMatrixMode: 'cameraTransformMatrix'
     })
 

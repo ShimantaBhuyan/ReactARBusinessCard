@@ -1,6 +1,10 @@
 # React_AFrame AR Business Card 
 ## Create dynamic business card in AR with AFrame and React
 ---
+
+#### NFT marker creator
+[Link](https://carnaux.github.io/NFT-Marker-Creator/])
+
 ### Phase 1 <mark>(WIP)</mark>
 -   [x] Create form to gather users business details(generally what you have on a business card and some more like social links)
 -   [ ] Display this data in the scene dynamically

@@ -28377,7 +28377,9 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-//import "aframe"
+// import 'aframe';
+// import {Entity, Scene} from 'aframe-react';
+// import * as ZapparAFrame from "@zappar/zappar-aframe";
 var hasGetUserMedia = function hasGetUserMedia() {
   return !!(navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
 };
@@ -28415,601 +28417,50 @@ var registerClick = function registerClick() {
   });
 };
 
-var initializeScene = function initializeScene(props) {
-  checkMedia();
-  AFRAME.registerComponent('markerhandler', {
-    init: function init() {
-      this.el.sceneEl.addEventListener('markerFound', function () {
-        // redirect to custom URL
-        //window.location = 'https://github.com/AR-js-org/AR.js';
-        console.log("IMAGE TRACKED!");
-      });
-    }
-  });
-  var sceneEl = document.querySelector("a-scene");
-  sceneEl.flushToDOM(true); // set scene attributes
-
-  AFRAME.registerComponent('arcardscene', {
-    init: function init() {
-      registerClick(); // get scene element
-
-      var sceneEl = this.el; // set header text attributes
-
-      sceneEl.querySelector('#headerText').setAttribute('rotation', {
-        x: -90,
-        y: -90,
-        z: 90
-      });
-      sceneEl.querySelector('#headerText').setAttribute('position', {
-        x: -40,
-        y: 0,
-        z: -620
-      });
-      sceneEl.querySelector('#headerText').setAttribute('text-geometry', {
-        value: "AR Business Card",
-        size: 15
-      }); // set name text attributes
-
-      sceneEl.querySelector('#nameText').setAttribute('rotation', {
-        x: -90,
-        y: -90,
-        z: 90
-      });
-      sceneEl.querySelector('#nameText').setAttribute('position', {
-        x: -100,
-        y: 0,
-        z: -450
-      });
-      sceneEl.querySelector('#nameText').setAttribute('text-geometry', {
-        value: props.user.name,
-        font: "#optimerBoldFont",
-        size: 20
-      }); // set logo plane attributes
-
-      sceneEl.querySelector('#avevaLogoPlane').setAttribute('rotation', {
-        x: -90,
-        y: -90,
-        z: 90
-      });
-      sceneEl.querySelector('#avevaLogoPlane').setAttribute('position', {
-        x: 50,
-        y: 0,
-        z: -570
-      });
-      sceneEl.querySelector('#avevaLogoPlane').setAttribute('height', 200);
-      sceneEl.querySelector('#avevaLogoPlane').setAttribute('width', 476); // set portfolio block attributes
-
-      sceneEl.querySelector('#portfolioBlock').setAttribute('rotation', {
-        x: -90,
-        y: -90,
-        z: 90
-      });
-      sceneEl.querySelector('#portfolioBlock').setAttribute('position', {
-        x: 180,
-        y: 0,
-        z: -400
-      });
-      sceneEl.querySelector('#portfolioBlock').setAttribute('material', {
-        src: "#headshotTexture"
-      }); // set linkedin block attributes
-
-      sceneEl.querySelector('#linkedinBlock').setAttribute('rotation', {
-        x: -90,
-        y: -90,
-        z: 90
-      });
-      sceneEl.querySelector('#linkedinBlock').setAttribute('position', {
-        x: -80,
-        y: 0,
-        z: -400
-      });
-      sceneEl.querySelector('#linkedinBlock').setAttribute('material', {
-        src: "#linkedinTexture"
-      }); // set github block attributes
-
-      sceneEl.querySelector('#githubBlock').setAttribute('rotation', {
-        x: -90,
-        y: -90,
-        z: 90
-      });
-      sceneEl.querySelector('#githubBlock').setAttribute('position', {
-        x: -80,
-        y: 0,
-        z: -145
-      });
-      sceneEl.querySelector('#githubBlock').setAttribute('material', {
-        src: "#githubTexture"
-      }); // set email block attributes
-
-      sceneEl.querySelector('#emailBlock').setAttribute('rotation', {
-        x: -90,
-        y: -90,
-        z: 90
-      });
-      sceneEl.querySelector('#emailBlock').setAttribute('position', {
-        x: 180,
-        y: 0,
-        z: -145
-      });
-      sceneEl.querySelector('#emailBlock').setAttribute('material', {
-        src: "#emailTexture"
-      }); // set camera entity attributes   
-
-      sceneEl.querySelector('#cameraEntity').setAttribute('cursor', {
-        rayOrigin: "mouse"
-      }); // set cursor entity attributes           
-
-      sceneEl.querySelector('#cursorEntity').setAttribute('raycaster', {
-        objects: ".clickable"
-      });
-      sceneEl.querySelector('#cursorEntity').setAttribute('cursor', {
-        fuse: true,
-        fuseTimeout: 2000
-      });
-      sceneEl.querySelector('#cursorEntity').setAttribute('position', {
-        x: 0,
-        y: 0,
-        z: -2
-      });
-      sceneEl.querySelector('#cursorEntity').setAttribute('scale', {
-        x: 0.1,
-        y: 0.1,
-        z: 0.1
-      });
-      sceneEl.querySelector('#cursorEntity').setAttribute('geometry', {
-        primitive: "ring"
-      });
-      sceneEl.querySelector('#cursorEntity').setAttribute('material', {
-        color: "white",
-        shader: "flat"
-      }); // need to set manually since attributes were not updating in DOM
-      //sceneEl.flushToDOM(true);  // Flush every entity.
-    }
-  });
-};
-
 var ARCard = function ARCard(props) {
-  console.log(props);
-  (0, _react.useEffect)(function () {
-    initializeScene(props);
-    return function () {
-      initializeScene(props);
-    };
-  });
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
-    className: "arjs-loader"
-  }, /*#__PURE__*/_react.default.createElement("div", null, "Loading, please wait...")), /*#__PURE__*/_react.default.createElement("a-scene", {
-    arcardscene: true,
-    embedded: true,
-    "keyboard-shortcuts": "",
-    screenshot: "",
-    "aframe-inspector-removed-embedded": "undefined",
-    "vr-mode-ui": "enabled: false;",
-    renderer: "logarithmicDepthBuffer: true;",
-    arjs: "trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
-  }, /*#__PURE__*/_react.default.createElement("canvas", {
-    className: "a-canvas",
-    "data-aframe-canvas": "true",
-    width: "300",
-    height: "150"
-  }), /*#__PURE__*/_react.default.createElement("a-assets", null, /*#__PURE__*/_react.default.createElement("img", {
-    crossOrigin: "anonymous",
-    id: "skypeTexture",
-    src: "https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostSkype.png?1528821334003"
-  }), /*#__PURE__*/_react.default.createElement("img", {
-    crossOrigin: "anonymous",
-    id: "emailTexture",
-    src: "https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostEmail.png?1528821333360"
-  }), /*#__PURE__*/_react.default.createElement("img", {
-    crossOrigin: "anonymous",
-    id: "linkedinTexture",
-    src: "https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostLinkedin.png?1528821333139"
-  }), /*#__PURE__*/_react.default.createElement("img", {
-    crossOrigin: "anonymous",
-    id: "githubTexture",
-    src: "https://cdn.glitch.com/6f8b5a13-fd4d-445d-b9eb-57c735d720ea%2FPostGithub.png?1528821333564"
-  }), /*#__PURE__*/_react.default.createElement("img", {
-    crossOrigin: "anonymous",
-    id: "headshotTexture",
-    src: "/ReactARBusinessCard/assets/headshot.jpg"
-  }), /*#__PURE__*/_react.default.createElement("img", {
-    crossOrigin: "anonymous",
-    id: "avevaLogo",
-    src: "/ReactARBusinessCard/assets/AVEVA_Logo_color_RGB.png"
-  }), /*#__PURE__*/_react.default.createElement("a-mixin", {
-    id: "cube",
-    geometry: "primitive: box",
-    radius: "5",
-    scale: "40 40 40",
-    rotation: "0 0 0"
-  }), /*#__PURE__*/_react.default.createElement("a-mixin", {
-    id: "mouseEnterAnimation",
-    animation__mouseenter: "property: rotation; \r startEvents: mouseenter; \r pauseEvents: mouseleave; \r from: 0 0 0; \r to: 0 0 360; \r loop: true; \r dur: 2000; \r dir: alternate; \r easing: linear;"
-  }), /*#__PURE__*/_react.default.createElement("a-mixin", {
-    id: "mouseLeaveAnimation",
-    animation__mouseleave: "property: rotation; \r startEvents: mouseleave; \r loop: false; \r dur: 1500; \r to: 0 0 0;"
-  }), /*#__PURE__*/_react.default.createElement("a-asset-item", {
-    id: "optimerBoldFont",
-    src: "https://rawgit.com/mrdoob/three.js/dev/examples/fonts/optimer_bold.typeface.json"
-  })), /*#__PURE__*/_react.default.createElement("a-sphere", {
-    position: "0 1.25 -5",
-    radius: "1.25",
-    color: "#EF2D5E"
-  }), /*#__PURE__*/_react.default.createElement("a-nft", {
-    markerhandler: true,
-    type: "nft",
-    url: "/ReactARBusinessCard/assets/AVEVA_ID_CARD_markerData/AVEVA_ID_CARD",
-    smooth: "true",
-    smoothCount: "10",
-    smoothTolerance: ".01",
-    smoothThreshold: "5"
+  console.log(props); // useEffect(() => {
+  //     // initializeScene(props)
+  //     // return(() => {
+  //     //     initializeScene(props)
+  //     // })
+  //     let myImageGroup = document.getElementById("image-group");
+  //     let imageVisible = false;
+  //     myImageGroup.addEventListener("zappar-visible", () => {
+  //         // The image has appeared so show the group
+  //         myImageGroup.setAttribute("visible", "true");
+  //         imageVisible = true;
+  //     });
+  //     myImageGroup.addEventListener("zappar-notvisible", () => {
+  //         // The image has disappeared so hide the group after a short delay
+  //         imageVisible = false;
+  //         setTimeout(() => {
+  //             if (imageVisible === false) myImageGroup.setAttribute("visible", "false");
+  //         }, 500)
+  //     });
+  // }, [])    
+
+  return /*#__PURE__*/_react.default.createElement("a-scene", null, /*#__PURE__*/_react.default.createElement("a-entity", {
+    "zappar-permissions-ui": true,
+    id: "permissions"
+  }), /*#__PURE__*/_react.default.createElement("a-entity", {
+    "zappar-compatibility-ui": true,
+    id: "compatibility"
+  }), /*#__PURE__*/_react.default.createElement("a-entity", {
+    camera: true,
+    "zappar-camera": true,
+    cursor: "rayOrigin: mouse; fuse: false;",
+    raycaster: "objects: .collidable"
+  }), /*#__PURE__*/_react.default.createElement("a-entity", {
+    "zappar-image": "target: assets/headshotMarkerData/headshot.zpt",
+    id: "image-group"
   }, /*#__PURE__*/_react.default.createElement("a-entity", {
-    id: "headerText"
-  }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    id: "nameText"
-  }), /*#__PURE__*/_react.default.createElement("a-plane", {
-    src: "#avevaLogo",
-    id: "avevaLogoPlane"
-  }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    id: "portfolioBlock",
-    mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
-    class: "clickable",
-    "navigate-on-click": "url: ".concat(props.user.portfolio)
-  }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    id: "linkedinBlock",
-    mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
-    class: "clickable",
-    "navigate-on-click": "url: ".concat(props.user.linkedin)
-  }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    id: "githubBlock",
-    mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
-    class: "clickable",
-    "navigate-on-click": "url: ".concat(props.user.github)
-  }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    id: "emailBlock",
-    mixin: "cube mouseEnterAnimation mouseLeaveAnimation",
-    class: "clickable",
-    "navigate-on-click": "url: mailto:".concat(props.user.email)
-  })), /*#__PURE__*/_react.default.createElement("a-entity", {
-    id: "cameraEntity",
-    camera: true
-  }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    id: "cursorEntity",
-    rotation: "",
-    visible: "",
-    animation: "property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.1 0.1 0.1; to: 0.2 0.2 0.2; dur: 2000",
-    animation__color: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000",
-    animation__scalemouseleave: "property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.1 0.1 0.1;",
-    animation__colormouseleave: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: white;"
-  })));
+    "visibility-changer": true
+  }, /*#__PURE__*/_react.default.createElement("a-box", {
+    position: "0 0 0.5"
+  }))));
 };
 
 var _default = ARCard;
-exports.default = _default;
-},{"react":"node_modules/react/index.js"}],"img.jpg":[function(require,module,exports) {
-module.exports = "/img.81050c0a.jpg";
-},{}],"AScene.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireDefault(require("react"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//import "aframe"
-var AScene = function AScene() {
-  return /*#__PURE__*/_react.default.createElement("a-scene", null, /*#__PURE__*/_react.default.createElement("a-box", {
-    position: "-1 0.5 -3",
-    rotation: "0 45 0",
-    color: "#4CC3D9"
-  }), /*#__PURE__*/_react.default.createElement("a-sphere", {
-    position: "0 1.25 -5",
-    radius: "1.25",
-    color: "#EF2D5E"
-  }), /*#__PURE__*/_react.default.createElement("a-cylinder", {
-    position: "1 0.75 -3",
-    radius: "0.5",
-    height: "1.5",
-    color: "#FFC65D"
-  }), /*#__PURE__*/_react.default.createElement("a-plane", {
-    position: "0 0 -4",
-    rotation: "-90 0 0",
-    width: "4",
-    height: "4",
-    color: "#7BC8A4"
-  }), /*#__PURE__*/_react.default.createElement("a-dodecahedron", {
-    color: "#FF926B",
-    radius: "5",
-    position: "0 -1 -30"
-  }), /*#__PURE__*/_react.default.createElement("a-sky", {
-    src: require('./img.jpg')
-  }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    camera: true,
-    cursor: "rayOrigin: mouse"
-  }), /*#__PURE__*/_react.default.createElement("a-entity", {
-    cursor: "fuse: true; fuseTimeout: 2000;",
-    raycaster: "objects: .clickable",
-    position: "0 0 -6",
-    scale: "0.1 0.1 0.1",
-    geometry: "primitive: ring;",
-    material: "color: white; shader: flat",
-    rotation: "",
-    visible: "",
-    animation: "property: scale; startEvents: fusing; easing: easeInQuad; dir: alternate; from: 0.01 0.01 0.01; to: 0.02 0.02 0.02; dur: 2000",
-    animation__color: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: fusing; easing: easeInQuad; from: white; to: orange; dur: 2000",
-    animation__scalemouseleave: "property: scale; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: 0.01 0.01 0.01;",
-    animation__colormouseleave: "property: components.material.material.color; isRawProperty: true; type: color; startEvents: mouseleave; easing: easeInQuad; dur: 2000; to: white;"
-  }));
-};
-
-var _default = AScene;
-exports.default = _default;
-},{"react":"node_modules/react/index.js","./img.jpg":"img.jpg"}],"loadingWithThree.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-// https://rawcdn.githack.com/kalwalt/kalwalt-interactivity-AR/97baee315e2c67c2db1e31a6caa163a0e4c0fc03/resources/three.min.js
-// https://rawcdn.githack.com/kalwalt/kalwalt-interactivity-AR/97baee315e2c67c2db1e31a6caa163a0e4c0fc03/resources/js/libs/stats.min.js
-// https://rawcdn.githack.com/kalwalt/kalwalt-interactivity-AR/97baee315e2c67c2db1e31a6caa163a0e4c0fc03/resources/build/nftLoader/nftLoader.min.js
-
-/*
-<a-entity id="headerText"></a-entity>
-<a-entity id="nameText"></a-entity>
-
-<a-plane src="#avevaLogo" id="avevaLogoPlane"></a-plane>
-
-<a-entity id="portfolioBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.portfolio}`}></a-entity>
-
-<a-entity id="linkedinBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.linkedin}`}></a-entity>
-
-<a-entity id="githubBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: ${props.user.github}`}></a-entity>
-
-<a-entity id="emailBlock" mixin="cube mouseEnterAnimation mouseLeaveAnimation" class="clickable" navigate-on-click={`url: mailto:${props.user.email}`}></a-entity>
-*/
-// AFRAME.registerComponent('arcardscene', {
-//     init: function () {   
-//         registerClick()
-//         // get scene element
-//         var sceneEl = this.el; 
-//         // set header text attributes
-//         sceneEl.querySelector('#headerText').setAttribute('rotation', {x: -90, y: -90, z: 90});
-//         sceneEl.querySelector('#headerText').setAttribute('position', {x: -40, y: 0, z: -620});
-//         sceneEl.querySelector('#headerText').setAttribute('text-geometry', {value: "AR Business Card", size: 15});
-//         // set name text attributes
-//         sceneEl.querySelector('#nameText').setAttribute('rotation', {x: -90, y: -90, z: 90});
-//         sceneEl.querySelector('#nameText').setAttribute('position', {x: -100, y: 0, z: -450});
-//         sceneEl.querySelector('#nameText').setAttribute('text-geometry', {value: props.user.name, font: `#optimerBoldFont`, size: 20});
-//         // set logo plane attributes
-//         sceneEl.querySelector('#avevaLogoPlane').setAttribute('rotation', {x: -90, y: -90, z: 90});
-//         sceneEl.querySelector('#avevaLogoPlane').setAttribute('position', {x: 50, y: 0, z: -570});
-//         sceneEl.querySelector('#avevaLogoPlane').setAttribute('height', 200);
-//         sceneEl.querySelector('#avevaLogoPlane').setAttribute('width', 476);
-//         // set portfolio block attributes
-//         sceneEl.querySelector('#portfolioBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
-//         sceneEl.querySelector('#portfolioBlock').setAttribute('position', {x: 180, y: 0, z: -400});
-//         sceneEl.querySelector('#portfolioBlock').setAttribute('material', {src: `#headshotTexture`});
-//         // set linkedin block attributes
-//         sceneEl.querySelector('#linkedinBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
-//         sceneEl.querySelector('#linkedinBlock').setAttribute('position', {x: -80, y: 0, z: -400});
-//         sceneEl.querySelector('#linkedinBlock').setAttribute('material', {src: `#linkedinTexture`});
-//         // set github block attributes
-//         sceneEl.querySelector('#githubBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
-//         sceneEl.querySelector('#githubBlock').setAttribute('position', {x: -80, y: 0, z: -145});
-//         sceneEl.querySelector('#githubBlock').setAttribute('material', {src: `#githubTexture`});
-//         // set email block attributes
-//         sceneEl.querySelector('#emailBlock').setAttribute('rotation', {x: -90, y: -90, z: 90});
-//         sceneEl.querySelector('#emailBlock').setAttribute('position', {x: 180, y: 0, z: -145});
-//         sceneEl.querySelector('#emailBlock').setAttribute('material', {src: `#emailTexture`});
-//         // set camera entity attributes   
-//         sceneEl.querySelector('#cameraEntity').setAttribute('cursor', {rayOrigin: `mouse`});
-//         // set cursor entity attributes           
-//         sceneEl.querySelector('#cursorEntity').setAttribute('raycaster', {objects: `.clickable`});      
-//         sceneEl.querySelector('#cursorEntity').setAttribute('cursor', {fuse: true, fuseTimeout: 2000});      
-//         sceneEl.querySelector('#cursorEntity').setAttribute('position', {x: 0, y: 0, z: -2});
-//         sceneEl.querySelector('#cursorEntity').setAttribute('scale', {x: 0.1, y: 0.1, z: 0.1});
-//         sceneEl.querySelector('#cursorEntity').setAttribute('geometry', {primitive: `ring`});      
-//         sceneEl.querySelector('#cursorEntity').setAttribute('material', {color: `white`, shader: `flat`}); 
-//         // need to set manually since attributes were not updating in DOM
-//         sceneEl.flushToDOM(true);  // Flush every entity.
-//     }
-// })
-var initializeAR = function initializeAR() {
-  //////////////////////////////////////////////////////////////////////////////////
-  //		Init
-  //////////////////////////////////////////////////////////////////////////////////
-  var renderer = new THREE.WebGLRenderer({
-    antialias: true,
-    alpha: true,
-    precision: 'mediump'
-  });
-  var clock = new THREE.Clock();
-  var mixers = [];
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setClearColor(new THREE.Color('lightgrey'), 0);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.domElement.style.position = 'absolute';
-  renderer.domElement.style.top = '0px';
-  renderer.domElement.style.left = '0px';
-  document.body.appendChild(renderer.domElement); // init scene and camera
-
-  var scene = new THREE.Scene(); //////////////////////////////////////////////////////////////////////////////////
-  //		Initialize a basic camera
-  //////////////////////////////////////////////////////////////////////////////////
-  // Create a camera
-
-  var camera = new THREE.Camera();
-  scene.add(camera);
-  var light = new THREE.AmbientLight(0xffffff);
-  scene.add(light); ////////////////////////////////////////////////////////////////////////////////
-  //          handle arToolkitSource
-  ////////////////////////////////////////////////////////////////////////////////
-
-  var arToolkitSource = new THREEx.ArToolkitSource({
-    sourceType: 'webcam',
-    sourceWidth: 480,
-    sourceHeight: 640
-  });
-  arToolkitSource.init(function onReady() {
-    // use a resize to fullscreen mobile devices
-    setTimeout(function () {
-      onResize();
-    }, 1000);
-  }); // handle resize
-
-  window.addEventListener('resize', function () {
-    onResize();
-  }); // listener for end loading of NFT marker
-
-  window.addEventListener('arjs-nft-loaded', function (ev) {
-    console.log(ev);
-  });
-
-  function onResize() {
-    arToolkitSource.onResizeElement();
-    arToolkitSource.copyElementSizeTo(renderer.domElement);
-
-    if (arToolkitContext.arController !== null) {
-      arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas);
-    }
-  } ////////////////////////////////////////////////////////////////////////////////
-  //          initialize arToolkitContext
-  ////////////////////////////////////////////////////////////////////////////////
-
-
-  console.log(window.innerWidth);
-  console.log(window.innerHeight);
-  var viewPortWidth = window.innerWidth;
-  var viewPortHeight = window.innerHeight; // create atToolkitContext
-
-  var arToolkitContext = new THREEx.ArToolkitContext({
-    detectionMode: 'mono',
-    //detectionMode: 'color_and_matrix',
-    //matrixCodeType: '3x3',
-    canvasWidth: 480,
-    canvasHeight: 640
-  }
-  /* , {
-     sourceWidth: 480,
-     sourceHeight: 640,
-     //sourceType: 'webcam',
-  } */
-  ); // initialize it
-
-  arToolkitContext.init(function onCompleted() {
-    // copy projection matrix to camera
-    camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
-  }); ////////////////////////////////////////////////////////////////////////////////
-  //          Create a ArMarkerControls
-  ////////////////////////////////////////////////////////////////////////////////
-  // init controls for camera
-
-  var markerControls = new THREEx.ArMarkerControls(arToolkitContext, camera, {
-    type: 'nft',
-    descriptorsUrl: '/ReactARBusinessCard/assets/AVEVA_ID_CARD_markerData/AVEVA_ID_CARD',
-    changeMatrixMode: 'cameraTransformMatrix'
-  });
-  scene.visible = false;
-  var root = new THREE.Object3D();
-  scene.add(root); //////////////////////////////////////////////////////////////////////////////////
-  //		add an object in the scene
-  //////////////////////////////////////////////////////////////////////////////////
-
-  /* 
-  var threeGLTFLoader = new THREE.GLTFLoader();
-  var model;
-    threeGLTFLoader.load("/assets/Duck.glb", function (gltf) {
-      model = gltf.scene.children[0];
-      model.name = 'Duck';
-        var animation = gltf.animations[0];
-      var mixer = new THREE.AnimationMixer(model);
-      mixers.push(mixer);
-      var action = mixer.clipAction(animation);
-      action.play();
-        root.matrixAutoUpdate = false;
-      root.add(model);
-        model.position.z = -200;
-      model.position.x = 100;
-      model.position.y = 100;
-          //////////////////////////////////////////////////////////////////////////////////
-      //		render the whole thing on the page
-      //////////////////////////////////////////////////////////////////////////////////
-        var animate = function() {
-          requestAnimationFrame(animate);
-            if (mixers.length > 0) {
-              for (var i = 0; i < mixers.length; i++) {
-                  mixers[i].update(clock.getDelta());
-              }
-          }
-            if (!arToolkitSource.ready) {
-              return;
-          }
-            arToolkitContext.update( arToolkitSource.domElement )
-            // update scene.visible if the marker is seen
-          scene.visible = camera.visible;
-            renderer.render(scene, camera);
-      };
-        requestAnimationFrame(animate);
-  }); 
-  */
-
-  var sphere = new THREE.Mesh(new THREE.SphereGeometry(0.5, 8, 8), new THREE.MeshNormalMaterial());
-  root.matrixAutoUpdate = false;
-  root.add(sphere);
-  sphere.material.flatShading;
-  sphere.position.z = 40;
-  sphere.position.x = 80;
-  sphere.position.y = 80;
-  sphere.scale.set(80, 80, 80);
-
-  var animate = function animate() {
-    requestAnimationFrame(animate); // if (mixers.length > 0) {
-    //     for (var i = 0; i < mixers.length; i++) {
-    //         mixers[i].update(clock.getDelta());
-    //     }
-    // }
-
-    if (!arToolkitSource.ready) {
-      return;
-    }
-
-    arToolkitContext.update(arToolkitSource.domElement); // update scene.visible if the marker is seen
-
-    scene.visible = camera.visible;
-    renderer.render(scene, camera);
-  };
-
-  requestAnimationFrame(animate);
-};
-
-var NFT = function NFT() {
-  (0, _react.useEffect)(function () {
-    initializeAR();
-    return function () {
-      initializeAR();
-    };
-  });
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: "arjs-loader"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "arjs-loader-spinner"
-  }));
-};
-
-var _default = NFT;
 exports.default = _default;
 },{"react":"node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
 "use strict";
@@ -29024,10 +28475,6 @@ var _react = _interopRequireWildcard(require("react"));
 var _UserForm = _interopRequireDefault(require("./UserForm"));
 
 var _ARCard = _interopRequireDefault(require("./ARCard"));
-
-var _AScene = _interopRequireDefault(require("./AScene"));
-
-var _loadingWithThree = _interopRequireDefault(require("./loadingWithThree"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29133,17 +28580,9 @@ var App = function App() {
     backgroundRepeat: "no-repeat",
     height: "300px"
   };
-  return submitted ?
-  /*#__PURE__*/
-
-  /*<NFT />*/
-  _react.default.createElement(_ARCard.default, {
+  return submitted ? /*#__PURE__*/_react.default.createElement(_ARCard.default, {
     user: user
-  })
-  /*<AScene />*/
-  :
-  /*#__PURE__*/
-  _react.default.createElement(Home, {
+  }) : /*#__PURE__*/_react.default.createElement(Home, {
     onChange: handleChange,
     onSubmit: handleSubmit,
     user: user,
@@ -29178,7 +28617,7 @@ var Sample = function Sample(props) {
 
 var _default = App;
 exports.default = _default;
-},{"react":"node_modules/react/index.js","./UserForm":"UserForm.js","./ARCard":"ARCard.js","./AScene":"AScene.js","./loadingWithThree":"loadingWithThree.js"}],"index.js":[function(require,module,exports) {
+},{"react":"node_modules/react/index.js","./UserForm":"UserForm.js","./ARCard":"ARCard.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireDefault(require("react"));
@@ -29218,7 +28657,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53017" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63529" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

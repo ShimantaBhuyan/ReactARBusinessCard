@@ -1,11 +1,7 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect} from "react";
 
 import UserForm from "./UserForm"
 import ARCard from "./ARCard"
-
-import AScene from "./AScene"
-
-import NFT from "./loadingWithThree"
 
 const App = () => {    
     const defaultUser = {        
@@ -75,7 +71,7 @@ const App = () => {
         }
 
     return (  
-        submitted ? /*<NFT />*/ <ARCard user={user} /> /*<AScene />*/:
+        submitted ? <ARCard user={user} /> :
             <Home onChange={handleChange} onSubmit={handleSubmit} user={user} backgroundImageStyle={backgroundImageStyle}/>
             /*<Sample user={user} onSubmit={handleSubmit}/>*/
     )
