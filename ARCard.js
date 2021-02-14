@@ -72,11 +72,11 @@ const ARCard = (props) => {
 
             <a-entity camera zappar-camera cursor="rayOrigin: mouse; fuse: false;" raycaster="objects: .collidable"></a-entity>
 
-            {/* <a-assets>
-                <a-asset-item id="target-file" src="assets/headshotMarkerData/headshot.zpt"/>
-            </a-assets> */}
+            <a-assets>
+                <a-asset-item id="targetFile" src="assets/headshotMarkerData/headshot.zpt"/>
+            </a-assets>
 
-            <a-entity zappar-image="target: assets/headshotMarkerData/headshot.zpt" id="image-group">  
+            <a-entity zappar-image="#targetFile" id="image-group">  
                 <a-entity visibility-changer>
                     <a-box position="0 0 0.5"></a-box>    
                 </a-entity>                
